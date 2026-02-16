@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Natural Language Toolkit: Dependency Corpus Reader
 #
 # Copyright (C) 2001-2015 NLTK Project
@@ -10,17 +11,15 @@
 from __future__ import absolute_import
 
 import codecs
-
 from nltk.corpus.reader.api import *
 from nltk.corpus.reader.util import *
 from nltk.tokenize import *
-
-from .dependencygraph import DependencyGraph
+from providedcode.dependencygraph import DependencyGraph  # ✅ absolute import
 
 
 class DependencyCorpusReader(SyntaxCorpusReader):
-    """Corpus reader for dependency treebanks.
-    """
+    """Corpus reader for dependency treebanks."""
+
     def __init__(
         self,
         root,
@@ -30,16 +29,10 @@ class DependencyCorpusReader(SyntaxCorpusReader):
         sent_tokenizer=RegexpTokenizer("\n", gaps=True),
         para_block_reader=read_blankline_block,
     ):
-
-        CorpusReader.__init__(self, root, fileids, encoding)
-
-    #########################################################
+        super().__init__(root, fileids, encoding)
 
     def raw(self, fileids=None):
-        """
-        :return: the given file(s) as a single string.
-        :rtype: str
-        """
+        """Return raw text of given file(s) as a single string."""
         result = []
         for fileid, encoding in self.abspaths(fileids, include_encoding=True):
             if isinstance(fileid, PathPointer):
@@ -50,14 +43,7 @@ class DependencyCorpusReader(SyntaxCorpusReader):
         return concat(result)
 
     def words(self, fileids=None):
-        """_summary_
-
-        Args:
-            fileids (_type_, optional): _description_. Defaults to None.
-
-        Returns:
-            _type_: _description_
-        """
+        """Return words from corpus."""
         return concat(
             [
                 DependencyCorpusView(fileid, False, False, False, encoding=enc)
@@ -66,14 +52,7 @@ class DependencyCorpusReader(SyntaxCorpusReader):
         )
 
     def tagged_words(self, fileids=None):
-        """_summary_
-
-        Args:
-            fileids (_type_, optional): _description_. Defaults to None.
-
-        Returns:
-            _type_: _description_
-        """
+        """Return words with POS tags from corpus."""
         return concat(
             [
                 DependencyCorpusView(fileid, True, False, False, encoding=enc)
@@ -82,14 +61,7 @@ class DependencyCorpusReader(SyntaxCorpusReader):
         )
 
     def sents(self, fileids=None):
-        """_summary_
-
-        Args:
-            fileids (_type_, optional): _description_. Defaults to None.
-
-        Returns:
-            _type_: _description_
-        """
+        """Return sentences from corpus."""
         return concat(
             [
                 DependencyCorpusView(fileid, False, True, False, encoding=enc)
@@ -98,14 +70,7 @@ class DependencyCorpusReader(SyntaxCorpusReader):
         )
 
     def tagged_sents(self, fileids=None):
-        """_summary_
-
-        Args:
-            fileids (_type_, optional): _description_. Defaults to None.
-
-        Returns:
-            _type_: _description_
-        """
+        """Return sentences with POS tags."""
         return concat(
             [
                 DependencyCorpusView(fileid, True, True, False, encoding=enc)
@@ -114,14 +79,7 @@ class DependencyCorpusReader(SyntaxCorpusReader):
         )
 
     def parsed_sents(self, fileids=None):
-        """_summary_
-
-        Args:
-            fileids (_type_, optional): _description_. Defaults to None.
-
-        Returns:
-            _type_: _description_
-        """
+        """Return sentences parsed as DependencyGraph objects."""
         sents = concat(
             [
                 DependencyCorpusView(fileid, False, True, True, encoding=enc)
@@ -132,18 +90,9 @@ class DependencyCorpusReader(SyntaxCorpusReader):
 
 
 class DependencyCorpusView(StreamBackedCorpusView):
-    """_summary_
+    """View of corpus file, optionally tokenized and parsed."""
 
-    Args:
-        StreamBackedCorpusView (_type_): _description_
-
-    Raises:
-        ValueError: _description_
-
-    Returns:
-        _type_: _description_
-    """
-    _DOCSTART = "-DOCSTART- -DOCSTART- O\n"  # dokumentu hasiera definitzen da
+    _DOCSTART = "-DOCSTART- -DOCSTART- O\n"
 
     def __init__(
         self,
@@ -158,42 +107,26 @@ class DependencyCorpusView(StreamBackedCorpusView):
         self._dependencies = dependencies
         self._group_by_sent = group_by_sent
         self._chunk_types = chunk_types
-        StreamBackedCorpusView.__init__(self, corpus_file, encoding=encoding)
+        super().__init__(corpus_file, encoding=encoding)
 
     def read_block(self, stream):
-        """_summary_
-
-        Args:
-            stream (_type_): _description_
-
-        Raises:
-            ValueError: _description_
-
-        Returns:
-            _type_: _description_
-        """
-        # Read the next sentence.
+        """Read the next sentence or sentence block from the corpus file."""
         sent = read_blankline_block(stream)[0].strip()
-        # Strip off the docstart marker, if present.
         if sent.startswith(self._DOCSTART):
-            sent = sent[len(self._DOCSTART) :].lstrip()
+            sent = sent[len(self._DOCSTART):].lstrip()
 
-        # extract word and tag from any of the formats
+        # Extract word/tag pairs or dependency structures
         if not self._dependencies:
             lines = [line.split("\t") for line in sent.split("\n")]
-            if len(lines[0]) == 3 or len(lines[0]) == 4:
+            if len(lines[0]) in {3, 4}:
                 sent = [(line[0], line[1]) for line in lines]
             elif len(lines[0]) == 10:
                 sent = [(line[1], line[4]) for line in lines]
             else:
                 raise ValueError("Unexpected number of fields in dependency tree file")
 
-            # discard tags if they weren't requested
             if not self._tagged:
                 sent = [word for (word, tag) in sent]
 
-        # Return the result.
-        if self._group_by_sent:
-            return [sent]
-        else:
-            return list(sent)
+        # Return as list of sentences or flattened
+        return [sent] if self._group_by_sent else list(sent)

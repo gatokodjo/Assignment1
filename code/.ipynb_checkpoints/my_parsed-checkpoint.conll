@@ -1,0 +1,44 @@
+1	Alice	Alice	X	X	_	2	nsubj	_	_
+2	went	go	X	X	_	0	ROOT	_	_
+3	to	to	X	X	_	2	prep	_	_
+4	the	the	X	X	_	5	det	_	_
+5	bookstore	bookstore	X	X	_	3	pobj	_	_
+6	yesterday	yesterday	X	X	_	2	npadvmod	_	_
+7	.	.	X	X	_	2	punct	_	_
+
+1	She	she	X	X	_	2	nsubj	_	_
+2	bought	buy	X	X	_	0	ROOT	_	_
+3	a	a	X	X	_	5	det	_	_
+4	new	new	X	X	_	5	amod	_	_
+5	book	book	X	X	_	2	dobj	_	_
+6	about	about	X	X	_	5	prep	_	_
+7	artificial	artificial	X	X	_	8	amod	_	_
+8	intelligence	intelligence	X	X	_	6	pobj	_	_
+9	.	.	X	X	_	2	punct	_	_
+
+1	The	the	X	X	_	2	det	_	_
+2	weather	weather	X	X	_	3	nsubj	_	_
+3	was	be	X	X	_	8	ccomp	_	_
+4	nice	nice	X	X	_	3	acomp	_	_
+5	,	,	X	X	_	8	punct	_	_
+6	so	so	X	X	_	8	advmod	_	_
+7	she	she	X	X	_	8	nsubj	_	_
+8	decided	decide	X	X	_	0	ROOT	_	_
+9	to	to	X	X	_	10	aux	_	_
+10	read	read	X	X	_	8	xcomp	_	_
+11	it	it	X	X	_	10	dobj	_	_
+12	in	in	X	X	_	10	prep	_	_
+13	the	the	X	X	_	14	det	_	_
+14	park	park	X	X	_	12	pobj	_	_
+15	.	.	X	X	_	8	punct	_	_
+
+1	Meanwhile	meanwhile	X	X	_	6	advmod	_	_
+2	,	,	X	X	_	6	punct	_	_
+3	her	her	X	X	_	4	poss	_	_
+4	friend	friend	X	X	_	6	nsubj	_	_
+5	Bob	Bob	X	X	_	4	appos	_	_
+6	was	be	X	X	_	7	aux	_	_
+7	cooking	cook	X	X	_	0	ROOT	_	_
+8	dinner	dinner	X	X	_	7	dobj	_	_
+9	.	.	X	X	_	7	punct	_	_
+

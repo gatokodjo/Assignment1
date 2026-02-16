@@ -15,7 +15,6 @@ from providedcode.transitionparser import TransitionParser
 from providedcode.dependencygraph import DependencyGraph, DependencyGraphError
 from providedcode.featureextractor import FeatureExtractor
 from providedcode.transition import Transition
-
 import spacy
 
 # Load English model
@@ -49,16 +48,17 @@ def sentences_to_depgraphs(sentences):
         doc = nlp(sent)
         conll_lines = []
 
-        # Create CoNLL lines
+        # Build CoNLL 10-column lines
         for i, token in enumerate(doc, start=1):
             head = token.head.i + 1 if token.head != token else 0
-            rel = token.dep_ if token.dep_ != "" else "dep"
+            rel = token.dep_ if token.dep_ else "dep"
             conll_lines.append(
                 f"{i}\t{token.text}\t{token.lemma_}\t{token.pos_}\t{token.tag_}\t_\t{head}\t{rel}\t_\t_"
             )
 
         try:
-            dg = DependencyGraph(conll_lines)
+            dg = DependencyGraph()  # create empty graph
+            dg._parse(conll_lines)  # patch original parser with spaCy lines
             depgraphs.append(dg)
         except DependencyGraphError as e:
             print(f"# Skipping invalid sentence: {e}", file=sys.stderr)
@@ -78,7 +78,7 @@ def main():
     # Load trained TransitionParser model
     tp = TransitionParser.load(model_file, Transition, FeatureExtractor)
 
-    # Read sentences
+    # Read sentences and convert to DependencyGraph objects
     sentences = read_sentences(input_file)
     depgraphs = sentences_to_depgraphs(sentences)
 
@@ -105,7 +105,7 @@ def main():
                 "_", "_"
             ]
             print("\t".join(cols))
-        print()  # Blank line between sentences
+        print()  # blank line between sentences
 
 
 if __name__ == "__main__":

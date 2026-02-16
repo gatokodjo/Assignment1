@@ -1,0 +1,43 @@
+1	Alice	Alice	X	X	_	2	compound	_	_
+2	var	var	X	X	_	4	npadvmod	_	_
+3	i	I	X	X	_	4	nsubj	_	_
+4	boghandlen	boghandlen	X	X	_	0	ROOT	_	_
+5	i	I	X	X	_	6	compound	_	_
+6	går	går	X	X	_	4	dobj	_	_
+7	.	.	X	X	_	4	punct	_	_
+
+1	Hun	Hun	X	X	_	2	nsubj	_	_
+2	købte	købte	X	X	_	0	ROOT	_	_
+3	en	en	X	X	_	2	intj	_	_
+4	ny	ny	X	X	_	5	amod	_	_
+5	bog	bog	X	X	_	2	dobj	_	_
+6	om	om	X	X	_	8	compound	_	_
+7	kunstig	kunstig	X	X	_	8	compound	_	_
+8	intelligens	intelligen	X	X	_	2	dobj	_	_
+9	.	.	X	X	_	2	punct	_	_
+
+1	Vejret	vejret	X	X	_	3	amod	_	_
+2	var	var	X	X	_	3	compound	_	_
+3	dejligt	dejligt	X	X	_	7	nsubj	_	_
+4	,	,	X	X	_	3	punct	_	_
+5	så	så	X	X	_	6	compound	_	_
+6	hun	hun	X	X	_	7	compound	_	_
+7	besluttede	besluttede	X	X	_	0	ROOT	_	_
+8	sig	sig	X	X	_	7	dobj	_	_
+9	for	for	X	X	_	7	prep	_	_
+10	at	at	X	X	_	7	prep	_	_
+11	læse	læse	X	X	_	12	compound	_	_
+12	den	den	X	X	_	10	pobj	_	_
+13	i	I	X	X	_	14	nsubj	_	_
+14	parken	parken	X	X	_	12	relcl	_	_
+15	.	.	X	X	_	7	punct	_	_
+
+1	I	I	X	X	_	2	nsubj	_	_
+2	mellemtiden	mellemtiden	X	X	_	4	amod	_	_
+3	lavede	lavede	X	X	_	4	compound	_	_
+4	hendes	hende	X	X	_	0	ROOT	_	_
+5	ven	ven	X	X	_	4	nummod	_	_
+6	Bob	Bob	X	X	_	7	compound	_	_
+7	aftensmad	aftensmad	X	X	_	4	appos	_	_
+8	.	.	X	X	_	4	punct	_	_
+

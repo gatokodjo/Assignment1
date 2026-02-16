@@ -1,0 +1,42 @@
+1	Alice	alice	X	X	_	2	compound	_	_
+2	gick	gick	X	X	_	0	ROOT	_	_
+3	till	till	X	X	_	2	prep	_	_
+4	bokhandeln	bokhandeln	X	X	_	5	amod	_	_
+5	igår	igår	X	X	_	3	pobj	_	_
+6	.	.	X	X	_	2	punct	_	_
+
+1	Hon	hon	X	X	_	2	compound	_	_
+2	köpte	köpte	X	X	_	6	npadvmod	_	_
+3	en	en	X	X	_	2	prep	_	_
+4	ny	ny	X	X	_	5	compound	_	_
+5	bok	bok	X	X	_	3	pobj	_	_
+6	om	om	X	X	_	0	ROOT	_	_
+7	artificiell	artificiell	X	X	_	8	compound	_	_
+8	intelligens	intelligen	X	X	_	6	pobj	_	_
+9	.	.	X	X	_	6	punct	_	_
+
+1	Vädret	vädret	X	X	_	3	compound	_	_
+2	var	var	X	X	_	3	compound	_	_
+3	fint	fint	X	X	_	12	dep	_	_
+4	,	,	X	X	_	3	punct	_	_
+5	så	så	X	X	_	6	compound	_	_
+6	hon	hon	X	X	_	7	amod	_	_
+7	bestämde	bestämde	X	X	_	12	compound	_	_
+8	sig	sig	X	X	_	12	det	_	_
+9	för	för	X	X	_	12	compound	_	_
+10	att	att	X	X	_	12	compound	_	_
+11	läsa	läsa	X	X	_	12	compound	_	_
+12	den	den	X	X	_	0	ROOT	_	_
+13	i	I	X	X	_	14	nsubj	_	_
+14	parken	parken	X	X	_	12	relcl	_	_
+15	.	.	X	X	_	12	punct	_	_
+
+1	Under	under	X	X	_	0	ROOT	_	_
+2	tiden	tiden	X	X	_	3	compound	_	_
+3	lagade	lagade	X	X	_	4	compound	_	_
+4	hennes	henne	X	X	_	5	compound	_	_
+5	vän	vän	X	X	_	7	compound	_	_
+6	Bob	Bob	X	X	_	7	compound	_	_
+7	middag	middag	X	X	_	1	pobj	_	_
+8	.	.	X	X	_	7	punct	_	_
+
